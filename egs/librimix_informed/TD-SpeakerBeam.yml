@@ -1,0 +1,49 @@
+# reference
+# GitHub @ SpeechFIT-BUT: https://github.com/BUTSpeechFIT/speakerbeam/blob/main/egs/libri2mix/local/conf.yml
+
+# modified and re-distributed by Zifeng Zhao @ Peking University, April 2022
+
+# filterbank config
+filterbank:
+  n_filters: 512
+  kernel_size: 16
+  stride: 8
+
+# Network config
+masknet:
+  n_blocks: 8
+  n_repeats: 3
+  mask_act: relu
+  bn_chan: 128
+  skip_chan: 128
+  hid_chan: 512
+enroll:
+  i_adapt_layer: 7
+  adapt_layer_type: mul
+  adapt_enroll_dim: 128
+
+# Training config
+training:
+  epochs: 100 # TODO
+  batch_size: 4 # TODO
+  num_workers: 16 # TODO
+  half_lr: yes
+  early_stop: yes
+  reduce_patience: 10 # TODO
+  stop_patience: 60 # TODO
+
+# Optim config
+optim:
+  optimizer: adam
+  lr: 0.001
+  weight_decay: 0.
+
+# Data config
+data:
+  task: sep_clean
+  train_dir: /home/zzf/dataset/libri2mix-informed/wav8k/min/train-100 # TODO
+  valid_dir: /home/zzf/dataset/libri2mix-informed/wav8k/min/dev # TODO
+  sample_rate: 8000
+  n_src: 2
+  segment: 3
+  segment_aux: 3
